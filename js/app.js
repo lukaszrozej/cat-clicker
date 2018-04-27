@@ -1,12 +1,80 @@
 const body = document.querySelector('body');
 
-const catList = new CatList(document.querySelector('.cat-display'));
+const model = {
+  cats: [
+    { name: 'Claudio', url: 'img/claudio.jpg', clickCount: 0, },
+    { name: 'Igor', url: 'img/igor.jpg', clickCount: 0, },
+    { name: 'Ottorino', url: 'img/ottorino.jpg', clickCount: 0, },
+    { name: 'Bela', url: 'img/bela.jpg', clickCount: 0, },
+    { name: 'Fryderyk', url: 'img/fryderyk.jpg', clickCount: 0, },
+  ],
+  currentCat: 0,
+};
 
-catList.add(new Cat('Claudio', 'img/claudio.jpg'));
-catList.add(new Cat('Igor', 'img/igor.jpg'));
-catList.add(new Cat('Ottorino', 'img/ottorino.jpg'));
-catList.add(new Cat('Bela', 'img/bela.jpg'));
-catList.add(new Cat('Fryderyk', 'img/fryderyk.jpg'));
+const octopus = {
+  init: function() {
+    listView.init();
+    listView.render();
 
-catList.appendTo(body);
-catList.displayCat(0);
+    catView.init();
+    catView.render();
+  },
+
+  getCats: function() {
+    return model.cats;
+  },
+
+  setCurrentCat: function(id) {
+    model.currentCat = id;
+    catView.render();
+  },
+
+  getCurrentCat: function() {
+    return model.cats[model.currentCat];
+  },
+
+  clickCurrentCat: function() {
+    model.cats[model.currentCat].clickCount++;
+    catView.render();
+  },
+}
+
+const listView = {
+  init: function() {
+    this.listElement = document.querySelector('.cat-list');
+    this.listElement.addEventListener('click', event => {
+      const item = event.target.closest('.cat-item');
+      if (item === undefined) return;
+
+      octopus.setCurrentCat(item.dataset.id);
+    });
+  },
+
+  render: function() {
+    this.listElement.innerHTML = octopus
+      .getCats()
+      .map( (cat, i) => `<li class="cat-item" data-id="${i}">${cat.name}</li>` )
+      .join('');
+  },
+}
+
+const catView = {
+  init: function() {
+    this.nameElement = document.querySelector('.cat-name');
+    this.imgElement =  document.querySelector('.cat-image');
+    this.counterElement =  document.querySelector('.cat-counter');
+
+    this.imgElement.addEventListener('click', event => 
+      octopus.clickCurrentCat()
+    );
+  },
+
+  render: function() {
+    const cat = octopus.getCurrentCat();
+    this.nameElement.textContent = cat.name;
+    this.imgElement.src = cat.url;
+    this.counterElement.textContent = cat.clickCount;
+  },
+}
+
+octopus.init();
