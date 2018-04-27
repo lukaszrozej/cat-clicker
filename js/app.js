@@ -14,10 +14,7 @@ const model = {
 const octopus = {
   init: function() {
     listView.init();
-    listView.render();
-
     catView.init();
-    catView.render();
   },
 
   getCats: function() {
@@ -48,6 +45,8 @@ const listView = {
 
       octopus.setCurrentCat(item.dataset.id);
     });
+
+    this.render();
   },
 
   render: function() {
@@ -67,6 +66,8 @@ const catView = {
     this.imgElement.addEventListener('click', event => 
       octopus.clickCurrentCat()
     );
+
+    this.render();
   },
 
   render: function() {
