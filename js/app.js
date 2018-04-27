@@ -9,3 +9,4 @@ catList.add(new Cat('Bela', 'img/bela.jpg'));
 catList.add(new Cat('Fryderyk', 'img/fryderyk.jpg'));
 
 catList.appendTo(body);
+catList.displayCat(0);
