@@ -2,19 +2,21 @@ const body = document.querySelector('body');
 
 const model = {
   cats: [
-    { name: 'Claudio', url: 'img/claudio.jpg', clickCount: 0, },
-    { name: 'Igor', url: 'img/igor.jpg', clickCount: 0, },
-    { name: 'Ottorino', url: 'img/ottorino.jpg', clickCount: 0, },
-    { name: 'Bela', url: 'img/bela.jpg', clickCount: 0, },
-    { name: 'Fryderyk', url: 'img/fryderyk.jpg', clickCount: 0, },
+    { name: 'Claudio', url: 'img/claudio.jpg', clicks: 0, },
+    { name: 'Igor', url: 'img/igor.jpg', clicks: 0, },
+    { name: 'Ottorino', url: 'img/ottorino.jpg', clicks: 0, },
+    { name: 'Bela', url: 'img/bela.jpg', clicks: 0, },
+    { name: 'Fryderyk', url: 'img/fryderyk.jpg', clicks: 0, },
   ],
   currentCat: 0,
+  adminModeIsOn: false,
 };
 
 const octopus = {
   init: function() {
     listView.init();
     catView.init();
+    adminView.init();
   },
 
   getCats: function() {
@@ -24,6 +26,7 @@ const octopus = {
   setCurrentCat: function(id) {
     model.currentCat = id;
     catView.render();
+    adminView.render();
   },
 
   getCurrentCat: function() {
@@ -31,9 +34,29 @@ const octopus = {
   },
 
   clickCurrentCat: function() {
-    model.cats[model.currentCat].clickCount++;
+    model.cats[model.currentCat].clicks++;
     catView.render();
   },
+
+  turnAdminModeOn: function() {
+    model.adminModeIsOn = true;
+    adminView.render();
+  },
+
+  turnAdminModeOff: function() {
+    model.adminModeIsOn = false;
+    adminView.render();
+  },
+
+  updateCurrentCat(cat) {
+    model.cats[model.currentCat] = cat;
+    listView.render();
+    catView.render();
+  },
+
+  adminModeIsOn() {
+    return model.adminModeIsOn;
+  }
 }
 
 const listView = {
@@ -74,13 +97,45 @@ const catView = {
     const cat = octopus.getCurrentCat();
     this.nameElement.textContent = cat.name;
     this.imgElement.src = cat.url;
-    this.counterElement.textContent = cat.clickCount;
+    this.counterElement.textContent = cat.clicks;
   },
 }
 
 adminView = {
   init: function() {
-    
+    this.form = document.querySelector('.admin-form');
+    this.nameInput = document.querySelector('#name-input');
+    this.urlInput = document.querySelector('#url-input');
+    this.clicksInput = document.querySelector('#clicks-input');
+
+    document.querySelector('.admin-btn')
+      .addEventListener('click', event => octopus.turnAdminModeOn() );
+
+    document.querySelector('.cancel-btn')
+      .addEventListener('click', event => octopus.turnAdminModeOff() );
+
+    document.querySelector('.save-btn')
+      .addEventListener('click', event =>
+        octopus.updateCurrentCat({
+          name: this.nameInput.value,
+          url: this.urlInput.value,
+          clicks: this.clicksInput.value,
+        })
+      );
+
+    this.render();
+  },
+
+  render() {
+    if (octopus.adminModeIsOn()) {
+      const cat = octopus.getCurrentCat();
+      this.nameInput.value = cat.name;
+      this.urlInput.value = cat.url;
+      this.clicksInput.value = cat.clicks;
+      this.form.classList.remove('hidden');
+    } else {
+      this.form.classList.add('hidden');
+    }
   }
 }
 
