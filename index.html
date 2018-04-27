@@ -11,11 +11,22 @@
 
 <body>
   <ul class="cat-list"></ul>
+
   <div class='cat-display'>
     <h2 class="cat-name"></h2>
     <img class="cat-image" src="">
     <p class="cat-counter"></p>`
   </div>
+
+  <button class="admin-btn">Admin</button>
+
+  <form class="admin-form">
+    <label>Name:<input type="text" id="name"></label>
+    <label>URL:<input type="text" id="url"></label>
+    <label>Click Count:<input type="text" id="click-count"></label>
+    <button class="save-btn">Save</button>
+    <button class="cancel-btn">Cancel</button>
+  </form>
 
   <script src="js/cat-list.js"></script>
   <script src="js/cat.js"></script>
