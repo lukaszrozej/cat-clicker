@@ -1,6 +1,9 @@
-let counter = 0;
+const body = document.querySelector('body');
 
-document.querySelector('.cat').addEventListener('click', function() {
-  counter++;
-  document.querySelector('.counter').textContent = counter;
-});
+const cats = [
+  new Cat('Claudio', 'img/claudio.jpg'),
+  new Cat('Igor', 'img/igor.jpg'),
+];
+
+
+cats.forEach(cat => cat.appendTo(body));

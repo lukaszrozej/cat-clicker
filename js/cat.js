@@ -3,29 +3,35 @@ class Cat {
     this.name = name;
     this.image = image;
     this.counter = 0
+
+    this.createElement();
   }
 
   createElement() {
     this.element = document.createElement('div');
     this.element.classList.add('cat');
     this.element.innerHTML = `
-      <h2>${this.name}</h2>
+      <h2 class="cat-name">${this.name}</h2>
       <img class="cat-image" src="${this.image}">
-      <p class='text'>Number of clicks:</p>
-      <p class="text counter">0</p>`
-    this.counterElement = this.element.querySelector('.counter');
+      <p class="cat-text">Number of clicks:</p>
+      <p class="cat-text cat-counter">0</p>`
+    this.counterElement = this.element.querySelector('.cat-counter');
+
+    this.element
+      .querySelector('.cat-image')
+      .addEventListener('click', this.click.bind(this));
   }
 
-  append(element) {
+  appendTo(element) {
     element.appendChild(this.element);
   }
 
   update() {
-    this.counterElement.textContent = counter;
+    this.counterElement.textContent = this.counter;
   }
 
   click() {
-    counter++;
-    update();
+    this.counter++;
+    this.update();
   }
 }
