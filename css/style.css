@@ -5,18 +5,29 @@
 }
 
 body {
-  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cat {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.cat,
-.text {
+.cat-name,
+.cat-image,
+.cat-text {
   margin-bottom: 1em;
 }
 
-.text {
+.cat-name,
+.cat-text {
   font-size: 2em;
+}
+
+.cat-name {
+  font-weight: bold;
 }
