@@ -9,8 +9,12 @@ class CatList {
   }
 
   createElement() {
-    this.element = document.createElement('ul');
-    this.element.classList.add('cat-list');
+    this.element = document.createElement('div');
+    this.element.classList.add('cats');
+    this.element.innerHTML = `
+      <h2 class="cat-list-header">Cats:</h2>
+      <ul class="cat-list"></ul>`;
+    this.list = this.element.querySelector('.cat-list');
   }
 
   appendTo(element) {
@@ -19,13 +23,14 @@ class CatList {
 
   add(cat) {
     const catListItem = document.createElement('li');
+    catListItem.classList.add('cat-item');
     catListItem.textContent = cat.name;
     catListItem.dataset.id = this.cats.length;
     catListItem.addEventListener('click',
       () => this.displayCat(catListItem.dataset.id)
     );
 
-    this.element.appendChild(catListItem);
+    this.list.appendChild(catListItem);
 
     this.cats.push(cat);
   }

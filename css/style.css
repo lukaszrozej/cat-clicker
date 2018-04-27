@@ -5,10 +5,11 @@
 }
 
 body {
+  padding-top: 1em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
+  align-items: top;
 }
 
 .cat {
@@ -21,14 +22,32 @@ body {
 .cat-name,
 .cat-image,
 .cat-text {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
+.cat-list,
 .cat-name,
 .cat-text {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
+.cat-list-header,
 .cat-name {
   font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.cat-list {
+  list-style: none;
+  min-width: 10em;
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-item {
+  padding: 0.2em 0;
+}
+
+.cat-item:hover {
+  background: rgb(220, 240, 250);
 }
