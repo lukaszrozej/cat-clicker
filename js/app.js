@@ -79,7 +79,9 @@ const catView = {
 }
 
 adminView = {
-  
+  init: function() {
+    
+  }
 }
 
 octopus.init();

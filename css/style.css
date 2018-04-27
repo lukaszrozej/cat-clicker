@@ -7,12 +7,19 @@
 body {
   padding-top: 1em;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-around;
-  align-items: top;
+  align-items: center;
 }
 
-.cat {
+.cats {
+  max-width: 600px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.cat-display {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +38,6 @@ body {
   font-size: 1.5em;
 }
 
-.cat-list-header,
 .cat-name {
   font-weight: bold;
   margin-bottom: 0.5em;
@@ -50,4 +56,37 @@ body {
 
 .cat-item:hover {
   background: rgb(220, 240, 250);
+}
+
+/* Admin */
+
+.admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.admin-btn,
+.save-btn,
+.cancel-btn {
+  width: 10em;
+  height: 2em;
+}
+
+.admin-form {
+  margin: 1em 0;
+  width: 30em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.admin-form label {
+  height: 3em;
+}
+
+.admin-form input {
+  width: 20em;
+  height: 2em;
 }

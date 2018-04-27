@@ -10,24 +10,36 @@
 </head>
 
 <body>
-  <ul class="cat-list"></ul>
+  <section class='cats'>
+    <nav>
+      <h2 class="cat-list-header">Cats:</h2>
+      <ul class="cat-list"></ul>
+    </nav>
+    
+    <div class='cat-display'>
+      <h2 class="cat-name"></h2>
+      <img class="cat-image" src="">
+      <p class="cat-counter"></p>`
+    </div>
+  </section>
 
-  <div class='cat-display'>
-    <h2 class="cat-name"></h2>
-    <img class="cat-image" src="">
-    <p class="cat-counter"></p>`
-  </div>
+  <secion class='admin'>
+    <button class="admin-btn">Admin</button>
 
-  <button class="admin-btn">Admin</button>
-
-  <form class="admin-form">
-    <label>Name:<input type="text" id="name"></label>
-    <label>URL:<input type="text" id="url"></label>
-    <label>Click Count:<input type="text" id="click-count"></label>
-    <button class="save-btn">Save</button>
-    <button class="cancel-btn">Cancel</button>
-  </form>
-
+    <form class="admin-form">
+      <label>Name:
+        <input type="text" id="name">
+      </label>
+      <label>URL:
+        <input type="text" id="url">
+      </label>
+      <label>Click Count:
+        <input type="text" id="click-count">
+      </label>
+      <button class="save-btn">Save</button>
+      <button class="cancel-btn">Cancel</button>
+    </form>
+  </secion>
   <script src="js/cat-list.js"></script>
   <script src="js/cat.js"></script>
   <script src="js/app.js"></script>
